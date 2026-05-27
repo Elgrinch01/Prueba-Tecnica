@@ -25,4 +25,24 @@ export async function fetchProducts() {
     : []
 }
 
-export default { fetchProducts }
+export async function createProduct(product) {
+  return request('', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(product),
+  })
+}
+
+export async function updateProduct(id, product) {
+  return request(id, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(product),
+  })
+}
+
+export default { fetchProducts, createProduct, updateProduct }

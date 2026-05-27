@@ -296,9 +296,56 @@
   background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
 }
 
+.product-form-card {
+  display: grid;
+  gap: 18px;
+}
+
+.product-form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.product-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.product-form-full {
+  grid-column: 1 / -1;
+}
+
+.product-form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-card-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-error {
+  grid-column: 1 / -1;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.22);
+  color: #fecaca;
+}
+
 @media (max-width: 960px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .product-form {
+    grid-template-columns: 1fr;
   }
 }
 
