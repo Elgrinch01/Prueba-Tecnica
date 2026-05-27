@@ -40,9 +40,9 @@ export function LoginPage() {
           </div>
 
           <ul className="bullet-list">
-            <li>Acceso simulado con LocalStorage.</li>
-            <li>Protección de rutas para el panel.</li>
-            <li>Base lista para catálogo y CRUD.</li>
+            <li>Acceso al panel de e-commerce con sesión simulada.</li>
+            <li>Administración segura del catálogo y el stock.</li>
+            <li>Inventario listo para gestionar ventas y productos.</li>
           </ul>
         </div>
 
