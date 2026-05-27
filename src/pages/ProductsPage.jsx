@@ -118,6 +118,12 @@ export function ProductsPage() {
       const data = await api.fetchProducts()
       setProducts(data)
       resetForm()
+      await Swal.fire({
+        title: editingId ? 'Producto actualizado' : 'Producto creado',
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false,
+      })
     } catch (err) {
       setFormError(err.message || 'No se pudo guardar el producto.')
     } finally {
