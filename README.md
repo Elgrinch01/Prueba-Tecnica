@@ -52,10 +52,15 @@ No se necesitan variables de entorno para este proyecto.
 
 ## Despliegue
 
-### Vercel
+### Netlify
 
 1. Sube el proyecto a GitHub.
-2. Importa el repositorio en Vercel.
+2. En Netlify, crea un nuevo sitio y conéctalo a tu repositorio de GitHub.
 3. Usa el comando de build: `npm run build`.
-4. Usa el directorio de salida: `dist`.
+4. Usa el directorio de publicación: `dist`.
 5. No agregues variables de entorno; no son necesarias.
+
+## Enlaces
+
+- **Aplicación desplegada:** https://prueba-tecnica-cesde.netlify.app/login
+- **Repositorio:** https://github.com/Elgrinch01/Prueba-Tecnica
