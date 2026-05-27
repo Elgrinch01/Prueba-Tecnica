@@ -6,6 +6,10 @@ export function ProductCard({ product, onEdit, onDelete, deletingId }) {
       <img
         src={product.imagen}
         alt={product.nombre}
+        onError={(e) => {
+          e.currentTarget.onerror = null
+          e.currentTarget.src = 'https://via.placeholder.com/400x300?text=No+Image'
+        }}
         style={{ width: '100%', height: 140, objectFit: 'cover', borderRadius: 8 }}
       />
       <h3 style={{ margin: '8px 0 4px' }}>{product.nombre}</h3>
