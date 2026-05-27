@@ -330,6 +330,70 @@
   justify-content: flex-end;
 }
 
+.loading-header,
+.error-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.product-skeleton {
+  min-height: 260px;
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(148, 163, 184, 0.12);
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  animation: shimmer 1.4s infinite;
+}
+
+.skeleton-image {
+  height: 140px;
+  border-radius: 8px;
+}
+
+.skeleton-line {
+  height: 14px;
+  margin-top: 12px;
+}
+
+.skeleton-line.title {
+  width: 70%;
+}
+
+.skeleton-line.short {
+  width: 45%;
+}
+
+.skeleton-line.compact {
+  width: 42%;
+}
+
+.skeleton-row {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 .form-error {
   grid-column: 1 / -1;
   padding: 12px 14px;

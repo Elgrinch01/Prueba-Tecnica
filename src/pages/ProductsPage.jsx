@@ -24,20 +24,21 @@ export function ProductsPage() {
   useEffect(() => {
     let mounted = true
 
-    async function load() {
+    async function loadProducts() {
       setLoading(true)
       setError(null)
+
       try {
         const data = await api.fetchProducts()
         if (mounted) setProducts(data)
       } catch (err) {
-        if (mounted) setError(err.message || 'Error fetching products')
+        if (mounted) setError(err.message || 'No se pudo cargar el inventario.')
       } finally {
         if (mounted) setLoading(false)
       }
     }
 
-    load()
+    loadProducts()
 
     return () => {
       mounted = false
@@ -166,6 +167,22 @@ export function ProductsPage() {
     }
   }
 
+  const retryLoad = async () => {
+    setLoading(true)
+    setError(null)
+
+    try {
+      const data = await api.fetchProducts()
+      setProducts(data)
+    } catch (err) {
+      setError(err.message || 'No se pudo cargar el inventario.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const skeletonItems = Array.from({ length: 6 }, (_, index) => index)
+
   return (
     <section className="page-grid">
       <div className="products-header">
@@ -263,8 +280,43 @@ export function ProductsPage() {
         </form>
       </section>
 
-      {loading && <div className="content-card">Cargando productos...</div>}
-      {error && <div className="content-card">Error: {error}</div>}
+      {loading && (
+        <section className="content-card">
+          <div className="loading-header">
+            <div>
+              <h3>Cargando inventario</h3>
+              <p className="muted">Estamos trayendo los productos desde MockAPI.</p>
+            </div>
+          </div>
+          <div className="product-grid">
+            {skeletonItems.map((item) => (
+              <article key={item} className="product-card product-skeleton" aria-hidden="true">
+                <div className="skeleton skeleton-image" />
+                <div className="skeleton skeleton-line title" />
+                <div className="skeleton skeleton-line short" />
+                <div className="skeleton-row">
+                  <div className="skeleton skeleton-line compact" />
+                  <div className="skeleton skeleton-line compact" />
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {error && !loading && (
+        <section className="content-card error-card">
+          <div>
+            <h3>No se pudo cargar el inventario</h3>
+            <p className="muted">{error}</p>
+          </div>
+          <div>
+            <button type="button" className="btn btn-secondary" onClick={retryLoad}>
+              Reintentar
+            </button>
+          </div>
+        </section>
+      )}
 
       {!loading && !error && (
         <section className="content-card">
