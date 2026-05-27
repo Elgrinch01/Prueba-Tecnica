@@ -70,5 +70,5 @@ No se necesitan variables de entorno para este proyecto.
 
 ## Enlaces
 
-- **Aplicación desplegada:** https://prueba-tecnica-cesde.netlify.app/login
+- **Aplicación desplegada:** https://prueba-tecnica-cesde.netlify.app/
 - **Repositorio:** https://github.com/Elgrinch01/Prueba-Tecnica
