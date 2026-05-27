@@ -221,6 +221,15 @@
   gap: 20px;
 }
 
+.products-header {
+  display: grid;
+  gap: 14px;
+}
+
+.search-input {
+  max-width: 420px;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
