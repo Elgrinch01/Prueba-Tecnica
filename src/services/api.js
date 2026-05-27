@@ -45,4 +45,10 @@ export async function updateProduct(id, product) {
   })
 }
 
-export default { fetchProducts, createProduct, updateProduct }
+export async function deleteProduct(id) {
+  return request(id, {
+    method: 'DELETE',
+  })
+}
+
+export default { fetchProducts, createProduct, updateProduct, deleteProduct }

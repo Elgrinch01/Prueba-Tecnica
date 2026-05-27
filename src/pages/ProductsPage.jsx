@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Swal from 'sweetalert2'
 import api from '../services/api'
 
 const EMPTY_FORM = {
@@ -18,6 +19,7 @@ export function ProductsPage() {
   const [editingId, setEditingId] = useState(null)
   const [formError, setFormError] = useState('')
   const [saving, setSaving] = useState(false)
+  const [deletingId, setDeletingId] = useState(null)
 
   useEffect(() => {
     let mounted = true
@@ -117,6 +119,50 @@ export function ProductsPage() {
       setFormError(err.message || 'No se pudo guardar el producto.')
     } finally {
       setSaving(false)
+    }
+  }
+
+  const handleDelete = async (product) => {
+    const result = await Swal.fire({
+      title: '¿Eliminar producto?',
+      text: `Vas a borrar ${product.nombre}. Esta acción no se puede deshacer.`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      reverseButtons: true,
+    })
+
+    if (!result.isConfirmed) {
+      return
+    }
+
+    setDeletingId(product.id)
+
+    try {
+      await api.deleteProduct(product.id)
+      const data = await api.fetchProducts()
+      setProducts(data)
+
+      if (editingId === product.id) {
+        resetForm()
+      }
+
+      await Swal.fire({
+        title: 'Producto eliminado',
+        text: 'El producto se eliminó correctamente.',
+        icon: 'success',
+        timer: 1500,
+        showConfirmButton: false,
+      })
+    } catch (err) {
+      await Swal.fire({
+        title: 'No se pudo eliminar',
+        text: err.message || 'Intenta nuevamente.',
+        icon: 'error',
+      })
+    } finally {
+      setDeletingId(null)
     }
   }
 
@@ -247,6 +293,14 @@ export function ProductsPage() {
                 <div className="product-card-actions">
                   <button type="button" className="btn btn-secondary" onClick={() => handleEdit(p)}>
                     Editar
+                  </button>
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    onClick={() => handleDelete(p)}
+                    disabled={deletingId === p.id}
+                  >
+                    {deletingId === p.id ? 'Eliminando...' : 'Eliminar'}
                   </button>
                 </div>
               </article>
