@@ -22,6 +22,14 @@ Aplicación React + Vite para administrar inventario de productos con autenticac
 npm install
 ```
 
+También puedes clonar el repositorio localmente antes de instalar dependencias:
+
+```bash
+git clone https://github.com/Elgrinch01/Prueba-Tecnica.git
+cd Prueba-Tecnica
+npm install
+```
+
 ## Desarrollo
 
 ```bash
