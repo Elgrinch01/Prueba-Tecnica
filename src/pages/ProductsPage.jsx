@@ -5,6 +5,7 @@ export function ProductsPage() {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     let mounted = true
@@ -29,10 +30,30 @@ export function ProductsPage() {
     }
   }, [])
 
+  const filteredProducts = products.filter((product) => {
+    const term = query.trim().toLowerCase()
+
+    if (!term) {
+      return true
+    }
+
+    return (
+      product.nombre?.toLowerCase().includes(term) ||
+      product.categoria?.toLowerCase().includes(term)
+    )
+  })
+
   return (
     <section className="page-grid">
-      <div>
+      <div className="products-header">
         <h2>Inventario</h2>
+        <input
+          className="form-control search-input"
+          type="search"
+          value={query}
+          onChange={(event) => setQuery(event.target.value)}
+          placeholder="Buscar por nombre o categoría"
+        />
       </div>
 
       {loading && <div className="content-card">Cargando productos...</div>}
@@ -41,7 +62,7 @@ export function ProductsPage() {
       {!loading && !error && (
         <section className="content-card">
           <div className="product-grid">
-            {products.map((p) => (
+            {filteredProducts.map((p) => (
               <article key={p.id} className="product-card">
                 <img src={p.imagen} alt={p.nombre} style={{ width: '100%', height: 140, objectFit: 'cover', borderRadius: 8 }} />
                 <h3 style={{ margin: '8px 0 4px' }}>{p.nombre}</h3>
@@ -53,6 +74,10 @@ export function ProductsPage() {
               </article>
             ))}
           </div>
+
+          {filteredProducts.length === 0 && (
+            <div className="empty-state">No hay resultados.</div>
+          )}
         </section>
       )}
     </section>
