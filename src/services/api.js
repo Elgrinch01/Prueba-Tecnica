@@ -36,13 +36,28 @@ export async function createProduct(product) {
 }
 
 export async function updateProduct(id, product) {
-  return request(id, {
-    method: 'PATCH',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(product),
-  })
+  try {
+    return await request(id, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(product),
+    })
+  } catch (err) {
+    // Si la petición PATCH falla por red/CORS, reintentar con PUT (algunos endpoints prefieren PUT)
+    if (err && /Failed to fetch/i.test(String(err.message || ''))) {
+      return request(id, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(product),
+      })
+    }
+
+    throw err
+  }
 }
 
 export async function deleteProduct(id) {
