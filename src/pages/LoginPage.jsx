@@ -32,24 +32,23 @@ export function LoginPage() {
       <section className="auth-grid">
         <div className="hero-panel">
           <div>
-            <div className="eyebrow">Proceso de selección · Frontend Junior</div>
-            <h1 className="hero-title">Panel administrativo para inventario e-commerce</h1>
+            <div className="eyebrow">Panel de inventario</div>
+            <h1 className="hero-title">Administra productos desde un solo lugar</h1>
             <p className="hero-copy">
-              Esta base ya deja listo el login simulado, la protección de rutas y la estructura
-              para continuar con el catálogo, edición de productos y manejo de sesiones.
+              Inicia sesión para revisar el catálogo, editar productos y mantener protegido el acceso al panel.
             </p>
           </div>
 
           <ul className="bullet-list">
-            <li>Login con LocalStorage y validación básica.</li>
-            <li>Rutas protegidas para evitar acceso directo al panel.</li>
-            <li>Estructura preparada para productos, filtros y CRUD.</li>
+            <li>Acceso simulado con LocalStorage.</li>
+            <li>Protección de rutas para el panel.</li>
+            <li>Base lista para catálogo y CRUD.</li>
           </ul>
         </div>
 
         <form className="login-card" onSubmit={handleSubmit}>
           <h2>Ingresar al panel</h2>
-          <p className="muted">Usa cualquier nombre de usuario y cualquier PIN para la simulación.</p>
+          <p className="muted">Usa cualquier nombre de usuario y cualquier PIN para entrar.</p>
 
           <div className="form-group">
             <label htmlFor="username">Nombre de usuario</label>
