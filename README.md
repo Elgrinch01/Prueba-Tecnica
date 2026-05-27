@@ -1,18 +1,102 @@
-# React + Vite
+# Panel administrativo de e-commerce
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicación React + Vite para administrar inventario de productos con autenticación simulada, rutas protegidas, listado desde MockAPI y CRUD básico.
 
-Currently, two official plugins are available:
+## Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Login mock con almacenamiento en `localStorage`.
+- Rutas protegidas para el panel.
+- Listado de productos desde MockAPI.
+- Búsqueda por nombre o categoría.
+- Crear, editar y eliminar productos.
+- Confirmación de borrado con SweetAlert2.
+- Estados de carga y error.
 
-## React Compiler
+## Stack
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- React 19
+- Vite
+- React Router DOM
+- SweetAlert2
+- CSS personalizado
+- MockAPI
 
-Note: This will impact Vite dev & build performances.
+## Requisitos
 
-## Expanding the ESLint configuration
+- Node.js 18 o superior.
+- npm.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Instalación
+
+```bash
+npm install
+```
+
+## Desarrollo
+
+```bash
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+## Preview del build
+
+```bash
+npm run preview
+```
+
+## API
+
+La app consume este endpoint:
+
+```text
+https://69bbf31e0915748735babfd6.mockapi.io/Producto
+```
+
+No se necesitan variables de entorno para este proyecto.
+
+## Flujo de uso
+
+1. Abre la app en el navegador.
+2. Ingresa cualquier nombre de usuario y cualquier PIN.
+3. Revisa el inventario.
+4. Usa el formulario para crear o editar productos.
+5. Elimina productos con confirmación.
+
+## Despliegue
+
+### Vercel
+
+1. Sube el proyecto a GitHub.
+2. Importa el repositorio en Vercel.
+3. Usa el comando de build: `npm run build`.
+4. Usa el directorio de salida: `dist`.
+5. No agregues variables de entorno; no son necesarias.
+
+### Netlify
+
+1. Sube el proyecto a GitHub.
+2. Conecta el repositorio en Netlify.
+3. Usa el comando de build: `npm run build`.
+4. Publica la carpeta `dist`.
+5. Verifica que la ruta base funcione en producción.
+
+## Estructura principal
+
+- `src/pages/LoginPage.jsx`
+- `src/pages/ProductsPage.jsx`
+- `src/services/api.js`
+- `src/routes/ProtectedRoute.jsx`
+- `src/layouts/DashboardLayout.jsx`
+- `src/auth/storage.js`
+
+## Notas
+
+- El login es simulado y usa `localStorage`.
+- Los campos numéricos se normalizan antes de mostrar o guardar.
+- La experiencia visual está pensada para escritorio y móvil.
